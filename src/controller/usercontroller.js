@@ -144,7 +144,7 @@ exports.logout = async (req, res) => {
             secure: process.env.NODE_ENV === "production",
             sameSite: "lax"
         });
-
+        
         res.status(200).json({
             success: true,
             message: "Logout successful"
