@@ -1248,7 +1248,225 @@
                 font-size: 22px
             }
         }
-    </style>
+    
+/* ===== PREMIUM UI FIX v2: SCROLL + FORGOT PASSWORD ===== */
+
+/* Make the entire application naturally scrollable */
+html, body {
+  min-height: 100%;
+  height: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+body {
+  min-height: 100vh !important;
+}
+
+/* Auth pages */
+.auth-container,
+.auth-wrapper,
+.auth-page {
+  min-height: 100vh !important;
+  height: auto !important;
+  overflow: visible !important;
+  padding: 40px 20px !important;
+  box-sizing: border-box;
+}
+
+.auth-card {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Dashboard must scroll on smaller screens/content-heavy pages */
+.dashboard,
+.app-container,
+.main-content,
+.content-area {
+  min-height: 100vh !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.main-content {
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
+
+/* ===== FORGOT PASSWORD BEAUTIFICATION ===== */
+
+#forgotPasswordScreen,
+.forgot-password-screen,
+.forgot-password-container {
+  min-height: 100vh !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+#forgotPasswordScreen {
+  position: relative;
+  padding: 48px 20px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(99,102,241,.22), transparent 32%),
+    radial-gradient(circle at 85% 80%, rgba(139,92,246,.18), transparent 30%),
+    linear-gradient(135deg, #eef2ff 0%, #f8fafc 48%, #f5f3ff 100%);
+}
+
+#forgotPasswordScreen::before {
+  content: "";
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: rgba(99,102,241,.10);
+  filter: blur(8px);
+  top: -160px;
+  right: -100px;
+  pointer-events: none;
+}
+
+#forgotPasswordScreen::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(139,92,246,.10);
+  filter: blur(8px);
+  bottom: -150px;
+  left: -100px;
+  pointer-events: none;
+}
+
+#forgotPasswordScreen .auth-card,
+#forgotPasswordScreen .forgot-card,
+#forgotPasswordScreen > div {
+  position: relative;
+  z-index: 2;
+}
+
+/* Generic selectors catch common forgot-password card structures */
+.forgot-password-card,
+#forgotPasswordScreen .auth-card {
+  width: min(100%, 460px) !important;
+  margin: auto !important;
+  padding: 42px !important;
+  border: 1px solid rgba(255,255,255,.75) !important;
+  border-radius: 28px !important;
+  background: rgba(255,255,255,.88) !important;
+  backdrop-filter: blur(22px) !important;
+  -webkit-backdrop-filter: blur(22px) !important;
+  box-shadow:
+    0 30px 70px rgba(30,41,59,.14),
+    0 8px 25px rgba(79,70,229,.08) !important;
+}
+
+/* Forgot password icon/header */
+#forgotPasswordScreen .auth-icon,
+#forgotPasswordScreen .form-icon,
+#forgotPasswordScreen .forgot-icon {
+  width: 72px !important;
+  height: 72px !important;
+  margin: 0 auto 22px !important;
+  border-radius: 22px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  color: white !important;
+  box-shadow: 0 15px 30px rgba(99,102,241,.28) !important;
+}
+
+#forgotPasswordScreen h1,
+#forgotPasswordScreen h2 {
+  color: #111827 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.7px !important;
+}
+
+#forgotPasswordScreen p {
+  color: #64748b !important;
+  line-height: 1.7 !important;
+}
+
+/* Forgot password form */
+#forgotPasswordScreen input {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  min-height: 52px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 14px !important;
+  background: #f8fafc !important;
+  padding: 0 16px !important;
+  font-size: 15px !important;
+  outline: none !important;
+  transition: .2s ease !important;
+}
+
+#forgotPasswordScreen input:focus {
+  background: #fff !important;
+  border-color: #818cf8 !important;
+  box-shadow: 0 0 0 4px rgba(99,102,241,.12) !important;
+}
+
+#forgotPasswordScreen button {
+  min-height: 52px !important;
+  border: 0 !important;
+  border-radius: 14px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: transform .2s ease, box-shadow .2s ease !important;
+}
+
+#forgotPasswordScreen button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(99,102,241,.20);
+}
+
+/* Back to login */
+#forgotPasswordScreen a,
+#forgotPasswordScreen .back-to-login,
+#forgotPasswordScreen [onclick*="login"],
+#forgotPasswordScreen [onclick*="Login"] {
+  color: #6366f1 !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  transition: .2s ease;
+}
+
+#forgotPasswordScreen a:hover,
+#forgotPasswordScreen .back-to-login:hover {
+  color: #4f46e5 !important;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .auth-container,
+  .auth-wrapper,
+  .auth-page {
+    padding: 24px 14px !important;
+  }
+
+  #forgotPasswordScreen {
+    padding: 28px 14px !important;
+    align-items: flex-start !important;
+  }
+
+  .forgot-password-card,
+  #forgotPasswordScreen .auth-card {
+    padding: 28px 20px !important;
+    border-radius: 22px !important;
+  }
+}
+
+/* ===== END PREMIUM UI FIX v2 ===== */
+
+</style>
 </head>
 
 <body>
@@ -1640,7 +1858,6 @@
             </div>
         </div>
     </section>
-
     <script>
         const $ = id => document.getElementById(id);
 
